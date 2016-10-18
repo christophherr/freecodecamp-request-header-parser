@@ -1,0 +1,17 @@
+{
+  "name": "freecodecamp-request-header-parser",
+  "version": "1.0.0",
+  "description": "Freecodecamp Request Header Parser Microservice Project",
+  "main": "server.js",
+  "author": "",
+  "dependencies": {
+    "async": "~0.2.8",
+    "express": "^3.2.6",
+    "socket.io": "~0.9.14"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {},
+  "license": "ISC"
+}
