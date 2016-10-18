@@ -7,7 +7,10 @@
   "dependencies": {
     "async": "~0.2.8",
     "express": "^3.2.6",
-    "socket.io": "~0.9.14"
+    "request": "^2.75.0",
+    "socket.io": "~0.9.14",
+    "useragent": "^2.1.9",
+    "yamlparser": "0.0.2"
   },
   "scripts": {
     "start": "node server.js"
