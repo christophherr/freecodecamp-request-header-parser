@@ -1,31 +1,28 @@
-var express = require('express');
-var useragent = require('useragent');
+/* eslint import/unambiguous: 0 */
+const express = require('express'),
+    useragent = require('useragent'),
+    app = express();
 
-var app = express();
+app.set('port', process.env.PORT || 5000);
 
-app.set('port', process.env.PORT);
+app.get('/', (req, res) => {
+    let visitor = useragent.parse(req.headers['user-agent']),
+        visitorIP = req.headers['x-forwarded-for'];
 
-app.get('/', function(req, res) {
-  
-  var visitor = useragent.parse(req.headers['user-agent']);
- 
-  var visitorIP = req.headers["x-forwarded-for"];
-  
-  if (visitorIP) {
-    var IPlist = visitorIP.split(",");
-    visitorIP = IPlist[IPlist.length -1];
-  } else {
-    visitorIP = req.connection.remoteAddress;
-  }
-  
-  res.json({
-    "IP-Address": visitorIP,
-    "Language": req.headers['accept-language'].split(',')[0],
-    "Operating System": visitor.os.family
-  });
-  
+    if (visitorIP) {
+        let IPlist = visitorIP.split(',');
+        visitorIP = IPlist[IPlist.length - 1];
+    } else {
+        visitorIP = req.connection.remoteAddress;
+    }
+
+    res.json({
+        'IP-Address': visitorIP,
+        Language: req.headers['accept-language'].split(',')[0],
+        'Operating System': visitor.os.family
+    });
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node.js Server is listening on port ' + app.get('port'));
-  });
+app.listen(app.get('port'), () => {
+    console.log('Node.js Server is listening on port ' + app.get('port'));
+});
